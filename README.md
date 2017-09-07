@@ -1,2 +1,3 @@
-# ember-dynamic-forms
+# Ember Dynamic Forms
+
 Rebuild forms from forms.
