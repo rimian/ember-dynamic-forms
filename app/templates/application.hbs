@@ -5,9 +5,10 @@
 
 <form>
   {{#each formFields as |field|}}
-    {{field.label}}
-    <input type={{field.type}} value={{field.value}} {{action "doEvent" field on="change"}}>
-    <br>
+    <p>
+      {{field.label}}
+      <input type={{field.type}} value={{field.value}} {{action "doEvent" field on="change"}}>
+    </p>
   {{/each}}
 </form>
 
