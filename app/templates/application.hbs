@@ -3,12 +3,12 @@
   Form
 </h1>
 
-<p>
-  {{form-element}}
-</p>
-
-<button onclick={{action 'changeForm'}}>
-  Click me.
-</button>
+<form>
+  {{#each formFields as |field|}}
+    {{field.label}}
+    <input type={{field.type}} value={{field.value}} {{action "doEvent" field on="change"}}>
+    <br>
+  {{/each}}
+</form>
 
 {{outlet}}
