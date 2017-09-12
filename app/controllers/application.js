@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
 
     let fieldFactory = Ember.Object.extend(Ember.Evented, {
       greet() {
+        warn(this.get('label'), ' triggered "greet"');
         this.trigger('greet');
       },
 
@@ -17,11 +18,12 @@ export default Ember.Controller.extend({
     });
 
     let fields = [
-      fieldFactory.create({label: 'Foo', value: 'bar'})
+      fieldFactory.create({label: 'Foo', value: 'bar'}),
+      fieldFactory.create({label: 'Bar', value: 'baz'})
     ];
 
     fields[0].on('greet', () => {
-      warn('Woo! Listener heard something.');
+      warn('Woo! Field 1 listener heard something.');
     })
 
     this.get('formFields').pushObjects(fields);
