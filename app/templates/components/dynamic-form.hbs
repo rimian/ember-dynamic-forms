@@ -1,0 +1,11 @@
+
+{{#each fields as |field|}}
+  <p>
+    {{field.label}}
+    {{input}}
+  </p>
+{{/each}}
+
+<button {{action "sendMessage"}}>
+  Click me
+</button>

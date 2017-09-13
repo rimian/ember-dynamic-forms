@@ -1,15 +1,8 @@
 
 <h1>
-  Form
+  Dynamic Form
 </h1>
 
-<form>
-  {{#each formFields as |field|}}
-    <p>
-      {{field.label}}
-      <input type={{field.type}} value={{field.value}} {{action "doEvent" field on="change"}}>
-    </p>
-  {{/each}}
-</form>
+{{dynamic-form}}
 
 {{outlet}}
