@@ -7,6 +7,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('event-bus');
+  this.route('actions-up-data-down');
 });
 
 export default Router;

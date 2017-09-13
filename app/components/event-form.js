@@ -9,7 +9,9 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
 
-    let fieldFactory = Ember.Object.extend({
+    this.set('fields', []);
+
+    let fieldFactory = Ember.Object.extend(Ember.Evented, {
       type: 'text'
     });
 
@@ -18,10 +20,15 @@ export default Ember.Component.extend({
       fieldFactory.create({label: 'Bar', value: 'baz'})
     ];
 
+    // This does not happen
+    fields[0].on('message', () => {
+      warn('Field says message event happened');
+    });
+
     this.get('fields').pushObjects(fields);
 
     this.get('eventBus').on('message', () => {
-      warn('message event happened');
+      warn('form component says message event happened');
     });
   },
 
