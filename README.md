@@ -2,6 +2,11 @@
 
 Rebuild forms from forms.
 
+There are two ways:
+
+* Interaction via an Event Bus: https://emberigniter.com/communication-between-distant-components/
+* Actions Up, Data Down: https://emberigniter.com/parent-to-children-component-communication/
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
