@@ -12,7 +12,7 @@ export default Ember.Component.extend({
     this.set('fields', []);
 
     let fieldFactory = Ember.Object.extend({
-      type: 'input'
+      type: 'input',
     });
 
     let fields = [
@@ -27,18 +27,22 @@ export default Ember.Component.extend({
   fieldWrappers: Ember.computed('fields.@each', function() {
     return this.get('fields').map(field => {
       return Ember.Object.create({
+        visible: true,
         field: field,
-        height: false
+        execute(value) {
+          warn('Thing happens:', value, this.field.value);
+          if(value === 'h' && this.get('field').label === 'Foo') {
+            this.set('visible', false);
+          }
+        }
       });
     });
   }),
 
   actions: {
-    sendAction() {
-      warn('Send Action');
+    sendAction(value) {
       this.get('fieldWrappers').forEach(wrapper => {
-        wrapper.toggleProperty('height');
-        warn(wrapper.field.value)
+        wrapper.execute(value);
       });
     }
   }

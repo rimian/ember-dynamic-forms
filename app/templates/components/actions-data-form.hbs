@@ -1,10 +1,12 @@
 
 <ul>
   {{#each fieldWrappers as |wrapper|}}
-    <p>
-      {{wrapper.field.label}}
-      {{input type=wrapper.field.type value=wrapper.field.value height=wrapper.height change=(action "sendAction")}}
-    </p>
+    {{#if wrapper.visible}}
+      <p>
+        {{wrapper.field.label}}
+        {{input type=wrapper.field.type value=wrapper.field.value height=wrapper.height change=(action "sendAction" wrapper.field.value)}}
+      </p>
+    {{/if}}
   {{/each}}
 </ul>
 
