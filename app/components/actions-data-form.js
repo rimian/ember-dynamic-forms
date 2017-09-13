@@ -4,29 +4,30 @@ const { warn } = Ember.Logger;
 
 export default Ember.Component.extend({
 
-  items: [],
+  fields: [],
 
   init() {
     this._super(...arguments);
 
-    this.set('items', []);
+    this.set('fields', []);
 
     let fieldFactory = Ember.Object.extend({
-      type: 'text'
+      type: 'input'
     });
 
-    let items = [
+    let fields = [
       fieldFactory.create({label: 'Foo', value: 'bar'}),
-      fieldFactory.create({label: 'Bar', value: 'baz'})
+      fieldFactory.create({label: 'Bar', value: 'baz'}),
+      fieldFactory.create({type: 'checkbox', label: 'Doo', value: 'dah'})
     ];
 
-    this.get('items').pushObjects(items);
+    this.get('fields').pushObjects(fields);
   },
 
-  childWrappers: Ember.computed('items.@each', function() {
-    return this.get('items').map(item => {
-      return Ember.Object.create({ // wrapper object
-        item: item,
+  fieldWrappers: Ember.computed('fields.@each', function() {
+    return this.get('fields').map(field => {
+      return Ember.Object.create({
+        field: field,
         height: false
       });
     });
@@ -34,9 +35,10 @@ export default Ember.Component.extend({
 
   actions: {
     sendAction() {
-      this.get('childWrappers').forEach(wrapper => {
+      warn('Send Action');
+      this.get('fieldWrappers').forEach(wrapper => {
         wrapper.toggleProperty('height');
-        warn(wrapper.item.value)
+        warn(wrapper.field.value)
       });
     }
   }

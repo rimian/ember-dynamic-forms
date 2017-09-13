@@ -1,9 +1,9 @@
 
 <ul>
-  {{#each childWrappers as |wrapper|}}
+  {{#each fieldWrappers as |wrapper|}}
     <p>
-      {{wrapper.item.label}}
-      {{input value=wrapper.item.value height=wrapper.height}}
+      {{wrapper.field.label}}
+      {{input type=wrapper.field.type value=wrapper.field.value height=wrapper.height change=(action "sendAction")}}
     </p>
   {{/each}}
 </ul>
