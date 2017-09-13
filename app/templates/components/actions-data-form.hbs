@@ -1,0 +1,15 @@
+
+<ul>
+  {{#each childWrappers as |wrapper|}}
+    <p>
+      {{wrapper.item.label}}
+      {{input value=wrapper.item.value height=wrapper.height}}
+    </p>
+  {{/each}}
+</ul>
+
+<button {{action "sendAction"}}>
+  Click me
+</button>
+
+{{yield}}
